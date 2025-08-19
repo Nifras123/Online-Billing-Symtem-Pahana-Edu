@@ -28,12 +28,8 @@
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/jsp/displayAccount.jsp</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/jsp/dashboard.jsp</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/WEB-INF/data/customers.csv</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/com/pahanaedu/auth/CustomerDAOTest.java</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/META-INF/context.xml</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/WEB-INF/web.xml</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/com/pahanaedu/auth/BillingServiceTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/com/pahanaedu/auth/LoginTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/com/pahanaedu/auth/AddCustomerTest.java</file>
         </group>
     </open-files>
 </project-private>

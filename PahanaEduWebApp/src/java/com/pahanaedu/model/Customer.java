@@ -29,19 +29,70 @@ public class Customer {
     public void setUnitsConsumed(double unitsConsumed) { this.unitsConsumed = unitsConsumed; }
 
     public String toCSV() {
-        return String.join(",", escape(accountNo), escape(name), escape(address), escape(telephone), String.valueOf(unitsConsumed));
+        return String.join(
+                ",",
+                quote(accountNo),
+                quote(name),
+                quote(address),
+                quote(telephone),
+                String.valueOf(unitsConsumed)
+        );
     }
 
     public static Customer fromCSV(String line) {
-        String[] parts = line.split(",", -1);
-        if (parts.length < 5) return null;
-        return new Customer(unescape(parts[0]), unescape(parts[1]), unescape(parts[2]), unescape(parts[3]), Double.parseDouble(parts[4]));
+        String[] parts = parseCSVLine(line);
+        if (parts == null || parts.length < 5) return null;
+        return new Customer(parts[0], parts[1], parts[2], parts[3], Double.parseDouble(parts[4]));
     }
 
-    private static String escape(String s) {
-        return s == null ? "" : s.replace(",", "\\,");
+    // RFC4180-style quoting for fields containing commas or quotes
+    private static String quote(String s) {
+        if (s == null) return "";
+        boolean needsQuotes = s.indexOf(',') >= 0 || s.indexOf('"') >= 0 || s.indexOf('\n') >= 0 || s.indexOf('\r') >= 0;
+        String out = s.replace("\"", "\"\"");
+        return needsQuotes ? ("\"" + out + "\"") : out;
     }
-    private static String unescape(String s) {
-        return s == null ? "" : s.replace("\\,", ",");
+
+    // Parser that supports both double-quote CSV and legacy backslash-escaped commas (\,)
+    private static String[] parseCSVLine(String line) {
+        if (line == null) return null;
+        java.util.List<String> fields = new java.util.ArrayList<>();
+        StringBuilder current = new StringBuilder();
+        boolean inQuotes = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (inQuotes) {
+                if (c == '"') {
+                    // lookahead for escaped quote
+                    if (i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                        current.append('"');
+                        i++;
+                    } else {
+                        inQuotes = false;
+                    }
+                } else {
+                    current.append(c);
+                }
+            } else {
+                if (c == '"') {
+                    inQuotes = true;
+                } else if (c == '\\') {
+                    // legacy escape for comma
+                    if (i + 1 < line.length() && line.charAt(i + 1) == ',') {
+                        current.append(',');
+                        i++;
+                    } else {
+                        current.append(c);
+                    }
+                } else if (c == ',') {
+                    fields.add(current.toString());
+                    current.setLength(0);
+                } else {
+                    current.append(c);
+                }
+            }
+        }
+        fields.add(current.toString());
+        return fields.toArray(new String[0]);
     }
 }

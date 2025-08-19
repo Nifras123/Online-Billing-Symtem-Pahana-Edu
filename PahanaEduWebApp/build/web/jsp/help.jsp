@@ -7,7 +7,7 @@
 %>
 <%@ include file="../includes/header.jsp" %>
 
-<div class="card p-4 mb-4">
+<div class="card card-elevated p-4 mb-4">
     <h2 class="mb-3">Help - Pahana Edu Billing System</h2>
     <ul class="list-group list-group-flush mb-4">
         <li class="list-group-item">

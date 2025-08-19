@@ -9,24 +9,99 @@
 %>
 <%@ include file="../includes/header.jsp" %>
 
-<div class="container my-5">
-    <div class="card shadow">
-        <div class="card-header text-center bg-primary text-white">
-            <h4>Customer Bill</h4>
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="title mb-1"><i class="bi bi-receipt me-2"></i>Customer Bill</h1>
+                <div class="subtitle">Generate and print customer billing statement</div>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="${pageContext.request.contextPath}/servlet/customer?action=list" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Customers
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bill Details -->
+    <div class="card card-elevated">
+        <div class="card-header bg-success text-white text-center">
+            <h4 class="mb-0"><i class="bi bi-receipt me-2"></i>Electricity Bill Statement</h4>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Customer: <%= c.getName() %></h5>
-            <p><strong>Account No:</strong> <%= c.getAccountNo() %></p>
-            <p><strong>Units Consumed:</strong> <%= c.getUnitsConsumed() %></p>
-            <p><strong>Total Amount:</strong> Rs. <%= String.format("%.2f", amount) %></p>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-person-circle me-2 text-primary" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h5 class="mb-0"><%= c.getName() %></h5>
+                                    <small class="text-muted-2">Customer Name</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-hash me-2 text-info" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h5 class="mb-0"><%= c.getAccountNo() %></h5>
+                                    <small class="text-muted-2">Account Number</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-geo-alt me-2 text-warning" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6 class="mb-0"><%= c.getAddress() != null ? c.getAddress() : "Address not provided" %></h6>
+                                    <small class="text-muted-2">Billing Address</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-telephone me-2 text-success" style="font-size: 1.5rem;"></i>
+                                <div>
+                                    <h6 class="mb-0"><%= c.getTelephone() != null ? c.getTelephone() : "Phone not provided" %></h6>
+                                    <small class="text-muted-2">Contact Number</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-light text-dark">
+                        <div class="card-body text-center">
+                            <h6 class="text-muted mb-2">Billing Summary</h6>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Units Consumed:</span>
+                                <strong><%= c.getUnitsConsumed() %> kWh</strong>
+                            </div>
+                            <hr class="my-2">
+                            <div class="d-flex justify-content-between">
+                                <span class="h6 mb-0">Total Amount:</span>
+                                <span class="h5 mb-0 text-success">Rs. <%= String.format("%.2f", amount) %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-footer text-center">
-            <button class="btn btn-success me-2" onclick="window.print()">
-                <i class="bi bi-printer"></i> Print
-            </button>
-            <a href="<%=request.getContextPath()%>/jsp/dashboard.jsp" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Back
-            </a>
+            <div class="d-flex gap-2 justify-content-center">
+                <button class="btn btn-success" onclick="window.print()">
+                    <i class="bi bi-printer me-1"></i>Print Bill
+                </button>
+                <button class="btn btn-outline-primary" onclick="window.print()">
+                    <i class="bi bi-download me-1"></i>Save as PDF
+                </button>
+                <a href="${pageContext.request.contextPath}/servlet/customer?action=list" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Customers
+                </a>
+            </div>
         </div>
     </div>
 </div>

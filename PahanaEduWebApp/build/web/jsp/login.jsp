@@ -2,9 +2,10 @@
 <%@ page session="false" %>
 <%@ include file="../includes/header.jsp" %>
 
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="card shadow p-4" style="width: 350px;">
-        <h3 class="text-center mb-4">Pahana Edu Login</h3>
+<div class="auth-wrapper">
+    <div class="card auth-card p-4 card-elevated">
+        <h3 class="text-center mb-1"><i class="bi bi-lightning-charge-fill me-2"></i>Pahana Edu</h3>
+        <p class="text-center text-muted-2 mb-4">Sign in to continue</p>
 
         <form method="post" action="${pageContext.request.contextPath}/servlet/auth">
             <div class="mb-3">
@@ -23,9 +24,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">
-                <i class="bi bi-box-arrow-in-right me-1"></i> Login
-            </button>
+            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right me-1"></i> Login</button>
         </form>
 
         <c:if test="${not empty requestScope.error}">
@@ -34,6 +33,7 @@
             </div>
         </c:if>
     </div>
+    
 </div>
 
 <%@ include file="../includes/footer.jsp" %>
