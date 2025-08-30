@@ -1,0 +1,186 @@
+/*
+   Pahana Edu - Modern UI Theme
+   Uses Bootstrap 5 as base. These are custom overrides and utilities.
+*/
+
+:root {
+    --app-bg: #1e293b; /* slate-800 */
+    --app-bg-alt: #334155; /* slate-700 */
+    --app-surface: #475569; /* slate-600 */
+    --app-card: #475569;
+    --app-card-border: rgba(255,255,255,0.15);
+    --app-text: #f8fafc; /* slate-50 */
+    --app-text-muted: #cbd5e1; /* slate-300 */
+    --brand: #3b82f6; /* blue-500 */
+    --brand-600: #2563eb;
+    --brand-500: #3b82f6;
+    --brand-400: #60a5fa;
+    --success-500: #10b981;
+    --warning-500: #f59e0b;
+    --danger-500: #ef4444;
+    --info-500: #06b6d4;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,0.25), transparent 60%),
+                radial-gradient(800px 400px at 110% 10%, rgba(6,182,212,0.18), transparent 60%),
+                linear-gradient(180deg, var(--app-bg), var(--app-bg-alt));
+    color: var(--app-text);
+}
+
+/* Navbar */
+.app-navbar {
+    background: linear-gradient(90deg, var(--brand-600), var(--brand-500)) !important;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    background: linear-gradient(90deg, var(--brand-400), var(--brand-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.navbar .nav-link {
+    color: var(--app-text-muted) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #ffffff !important;
+}
+
+/* Containers */
+.container {
+    color: var(--app-text);
+}
+
+/* Cards */
+.card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+    border: 1px solid var(--app-card-border);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.card-elevated {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+.feature-card {
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    border: 1px solid var(--app-card-border);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 42px rgba(0,0,0,0.45);
+    border-color: rgba(167,139,250,0.35);
+}
+
+.page-header {
+    margin-bottom: 1.25rem;
+}
+
+.page-header .title {
+    font-weight: 700;
+}
+
+.page-header .subtitle {
+    color: var(--app-text-muted);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(90deg, var(--brand-600), var(--brand-500));
+    border: none;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.btn-success { background: linear-gradient(90deg, #16a34a, #22c55e); border: none; }
+.btn-warning { background: linear-gradient(90deg, #d97706, #f59e0b); border: none; }
+.btn-info { background: linear-gradient(90deg, #0891b2, #06b6d4); border: none; }
+.btn-danger { background: linear-gradient(90deg, #b91c1c, #ef4444); border: none; }
+
+.btn {
+    border-radius: 12px;
+}
+
+/* Forms */
+.form-control,
+.form-select,
+.input-group-text {
+    background-color: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    color: var(--app-text);
+    border-radius: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(255,255,255,0.12);
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 .2rem rgba(59,130,246,0.25);
+    color: #fff;
+}
+
+label.form-label { color: var(--app-text-muted); }
+
+/* Tables */
+.table-modern thead th {
+    background: linear-gradient(180deg, rgba(59,130,246,0.20), rgba(59,130,246,0.08));
+    color: #000000;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.table-modern tbody tr {
+    border-color: rgba(255,255,255,0.06);
+}
+
+.table-modern tbody tr:hover {
+    background-color: rgba(255,255,255,0.08);
+}
+
+.table-modern td, .table-modern th {
+    color: #000000;
+}
+
+/* Footer */
+.app-footer {
+    background: linear-gradient(180deg, rgba(11,18,32,0.6), rgba(11,18,32,0.4));
+    border-top: 1px solid var(--app-card-border);
+    color: var(--app-text-muted);
+    margin-top: auto;
+}
+
+/* Auth */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    width: 380px;
+}
+
+/* Utility */
+.text-muted-2 { color: var(--app-text-muted) !important; }
+.me-2 { margin-right: .5rem !important; }
