@@ -1,0 +1,149 @@
+@startuml PahanaEduBillingSystem
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam classFontSize 10
+skinparam classFontName Arial
+
+package "Servlet Layer (Controllers)" {
+    class AuthServlet {
+        -String ADMIN_USER
+        -String ADMIN_PASS
+        +doPost(HttpServletRequest, HttpServletResponse)
+        +doGet(HttpServletRequest, HttpServletResponse)
+    }
+    
+    class CustomerServlet {
+        -CustomerDAO dao
+        +init()
+        +doPost(HttpServletRequest, HttpServletResponse)
+        +doGet(HttpServletRequest, HttpServletResponse)
+    }
+    
+    class ItemServlet {
+        -ItemDAO dao
+        +init()
+        +doPost(HttpServletRequest, HttpServletResponse)
+        +doGet(HttpServletRequest, HttpServletResponse)
+    }
+    
+    class BillingServlet {
+        -CustomerDAO dao
+        -BillingStrategy strategy
+        +init()
+        +doGet(HttpServletRequest, HttpServletResponse)
+    }
+}
+
+package "Model Layer" {
+    class Customer {
+        -String accountNo
+        -String name
+        -String address
+        -String telephone
+        -double unitsConsumed
+        +Customer()
+        +Customer(String, String, String, String, double)
+        +getAccountNo() String
+        +setAccountNo(String)
+        +getName() String
+        +setName(String)
+        +getAddress() String
+        +setAddress(String)
+        +getTelephone() String
+        +setTelephone(String)
+        +getUnitsConsumed() double
+        +setUnitsConsumed(double)
+        +toCSV() String
+        +fromCSV(String) Customer
+        -quote(String) String
+        -parseCSVLine(String) String[]
+    }
+    
+    class Item {
+        -String id
+        -String name
+        -double price
+        +Item()
+        +Item(String, String, double)
+        +getId() String
+        +setId(String)
+        +getName() String
+        +setName(String)
+        +getPrice() double
+        +setPrice(double)
+        +toCSV() String
+        +fromCSV(String) Item
+    }
+}
+
+package "Data Access Layer" {
+    class CustomerDAO {
+        -String path
+        -FileStorage fs
+        +CustomerDAO(ServletContext)
+        +getAll() List<Customer>
+        +findByAccountNo(String) Customer
+        +add(Customer)
+        +update(Customer)
+        +delete(String)
+    }
+    
+    class ItemDAO {
+        -String path
+        -FileStorage fs
+        +ItemDAO(ServletContext)
+        +getAll() List<Item>
+        +findById(String) Item
+        +add(Item)
+        +update(Item)
+        +delete(String)
+    }
+}
+
+package "Storage Layer" {
+    class FileStorage {
+        -static FileStorage instance
+        -ServletContext ctx
+        -FileStorage(ServletContext)
+        +init(ServletContext)
+        +getInstance() FileStorage
+        +readAllLines(String) List<String>
+        +writeAllLines(String, List<String>)
+        +getRealPath(String) String
+    }
+}
+
+package "Business Logic Layer" {
+    interface BillingStrategy {
+        +calculate(double) double
+    }
+    
+    class StandardBillingStrategy {
+        +calculate(double) double
+    }
+}
+
+
+
+' Relationships
+AuthServlet --> CustomerServlet : redirects to
+AuthServlet --> ItemServlet : redirects to
+AuthServlet --> BillingServlet : redirects to
+
+CustomerServlet --> CustomerDAO : uses
+CustomerServlet --> Customer : manages
+ItemServlet --> ItemDAO : uses
+ItemServlet --> Item : manages
+BillingServlet --> CustomerDAO : uses
+BillingServlet --> BillingStrategy : uses
+BillingServlet --> Customer : processes
+
+CustomerDAO --> FileStorage : uses
+CustomerDAO --> Customer : manages
+ItemDAO --> FileStorage : uses
+ItemDAO --> Item : manages
+
+ StandardBillingStrategy ..|> BillingStrategy : implements
+
+@enduml
