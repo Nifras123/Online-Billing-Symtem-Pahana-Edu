@@ -30,16 +30,6 @@
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/WEB-INF/data/customers.csv</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/META-INF/context.xml</file>
             <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/web/WEB-INF/web.xml</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/test/TestRunner.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/billing/StandardBillingStrategyTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/dao/CustomerItemDaoTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/model/CustomerItemCsvTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/support/FakeServletContext.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/billing/BillingMoreTests.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/dao/CustomerDaoBulkTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/dao/ItemDaoBulkTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/model/CustomerCsvEdgeCasesTest.java</file>
-            <file>file:/E:/Gayan/GIT/PahanaEduWebApp/PahanaEduWebApp/test/model/ItemCsvEdgeCasesTest.java</file>
         </group>
     </open-files>
 </project-private>
